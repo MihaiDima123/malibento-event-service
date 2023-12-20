@@ -36,6 +36,7 @@ public class DatasourceConfiguration {
         datasource.setLeakDetectionThreshold(120_000);
         datasource.setMaximumPoolSize(10);
         datasource.setMinimumIdle(2);
+        datasource.setMaximumPoolSize(10);
 
         return datasource;
     }
