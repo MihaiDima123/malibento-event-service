@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/events")
 public class EventApiController {
-    @GetMapping(":id")
+    @GetMapping("{id}")
     public ResponseEntity<ApiEventResponse> getEventById(@PathVariable Integer id) {
         return ResponseEntity.ok(
                 ApiEventResponse
@@ -40,7 +40,7 @@ public class EventApiController {
         );
     }
 
-    @DeleteMapping(":id")
+    @DeleteMapping("{id}")
     public ResponseEntity<ApiEventResponse> deleteEvent(@PathVariable Integer id) {
         return ResponseEntity.ok(
                 ApiEventResponse.empty()
