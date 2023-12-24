@@ -11,7 +11,7 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String position;
+    private String position; // TODO: Change this thing XD. Maybe a locator service i don't know how that works (yet)
 
     public Integer getId() {
         return id;
