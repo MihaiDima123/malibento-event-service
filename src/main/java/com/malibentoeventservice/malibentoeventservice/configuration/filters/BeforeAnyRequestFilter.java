@@ -1,6 +1,5 @@
 package com.malibentoeventservice.malibentoeventservice.configuration.filters;
 
-import com.malibentoeventservice.malibentoeventservice.configuration.FilterRegistrationConfiguration;
 import com.malibentoeventservice.malibentoeventservice.configuration.ThreadContext;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -18,7 +17,7 @@ import java.io.IOException;
 @Component
 public class BeforeAnyRequestFilter implements Filter {
     private static final String TENANT_REF_HEADER = "X-TENANT-ID";
-    private static final Logger logger = LoggerFactory.getLogger(FilterRegistrationConfiguration.class);
+    private static final Logger logger = LoggerFactory.getLogger(BeforeAnyRequestFilter.class);
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
