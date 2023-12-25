@@ -1,21 +1,21 @@
 package com.malibentoeventservice.malibentoeventservice.service.impl;
 
-import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
+import com.malibentoeventservice.malibentoeventservice.entities.Event;
 import com.malibentoeventservice.malibentoeventservice.service.EventService;
 
 public class EventServiceImpl implements EventService {
     @Override
-    public EventDTO getEventById(Integer eventId) {
+    public Event getEventById(Integer eventId) {
         return null;
     }
 
     @Override
-    public EventDTO createEvent(EventDTO eventDAO) {
+    public Event createEvent(Event event) {
         return null;
     }
 
     @Override
-    public EventDTO editEvent(EventDTO eventDAO) {
+    public Event editEvent(Event event) {
         return null;
     }
 

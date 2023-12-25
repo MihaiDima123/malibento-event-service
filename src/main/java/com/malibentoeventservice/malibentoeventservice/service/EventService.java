@@ -1,10 +1,10 @@
 package com.malibentoeventservice.malibentoeventservice.service;
 
-import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
+import com.malibentoeventservice.malibentoeventservice.entities.Event;
 
 public interface EventService {
-    EventDTO getEventById(final Integer eventId);
-    EventDTO createEvent(final EventDTO eventDAO);
-    EventDTO editEvent(final EventDTO eventDAO);
+    Event getEventById(final Integer eventId);
+    Event createEvent(final Event event);
+    Event editEvent(final Event event);
     void removeEvent(final Integer eventId);
 }
