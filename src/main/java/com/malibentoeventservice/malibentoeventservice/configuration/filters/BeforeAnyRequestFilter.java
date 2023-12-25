@@ -9,12 +9,14 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
 @Component
+@Order(1)
 public class BeforeAnyRequestFilter implements Filter {
     private static final String TENANT_REF_HEADER = "X-TENANT-ID";
     private static final Logger logger = LoggerFactory.getLogger(BeforeAnyRequestFilter.class);
