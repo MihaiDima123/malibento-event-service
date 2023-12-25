@@ -1,5 +1,6 @@
 package com.malibentoeventservice.malibentoeventservice.advice;
 
+import com.malibentoeventservice.malibentoeventservice.dao.ApiResponse;
 import com.malibentoeventservice.malibentoeventservice.dao.base.ApiErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ public class AppExceptionControllerAdvice {
     private static final Logger logger = LoggerFactory.getLogger(AppExceptionControllerAdvice.class);
 
     @ExceptionHandler(value = {Throwable.class})
-    public ResponseEntity<ApiErrorResponse> onAnyException(final Throwable t) {
+    public ResponseEntity<ApiResponse<?>> onAnyException(final Throwable t) {
         logger.error("[onAnyException] - {}", t.getMessage(), t);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)

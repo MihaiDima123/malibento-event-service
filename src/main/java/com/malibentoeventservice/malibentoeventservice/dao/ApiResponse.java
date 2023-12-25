@@ -8,30 +8,21 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiResponse<T, REF extends ApiResponse<T, ?>> {
+public class ApiResponse<T> {
     private T data;
     private List<ErrorDTO> errors;
 
-    public static <T, REF extends ApiResponse<T, REF>> ApiResponse<T, REF> empty() {
-        return new ApiResponse<T, REF>();
+    public static <T> ApiResponse<T> empty() {
+        return new ApiResponse<T>();
     }
 
-    public REF ofError(final String errorMessage) {
-        return addErrorForListAndReturnSelf(errorMessage);
-    }
-
-    public REF ofError(final Throwable t) {
+    public ApiResponse<T> ofError(final Throwable t) {
         return addErrorForListAndReturnSelf(t.getMessage());
     }
 
-    public REF ofData(final T data) {
+    public ApiResponse<T> ofData(final T data) {
         this.data = data;
-        return self();
-    }
-
-    @SuppressWarnings("unchecked")
-    public REF self() {
-        return (REF) this;
+        return this;
     }
 
     private void addErrorForList(final String errorMessage) {
@@ -41,8 +32,8 @@ public class ApiResponse<T, REF extends ApiResponse<T, ?>> {
         this.errors.add(ErrorDTO.from(errorMessage));
     }
 
-    private REF addErrorForListAndReturnSelf(final String errorMessage) {
+    private ApiResponse<T> addErrorForListAndReturnSelf(final String errorMessage) {
         addErrorForList(errorMessage);
-        return self();
+        return this;
     }
 }

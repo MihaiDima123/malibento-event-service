@@ -1,5 +1,6 @@
 package com.malibentoeventservice.malibentoeventservice.api;
 
+import com.malibentoeventservice.malibentoeventservice.dao.ApiResponse;
 import com.malibentoeventservice.malibentoeventservice.dao.event.ApiEventResponse;
 import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
 import com.malibentoeventservice.malibentoeventservice.service.EventService;
@@ -26,7 +27,7 @@ public class EventApiController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ApiEventResponse> getEventById(@PathVariable Integer id) {
+    public ResponseEntity<ApiResponse<EventDTO>> getEventById(@PathVariable Integer id) {
         return ResponseEntity.ok(
                 ApiEventResponse
                         .empty()
@@ -35,7 +36,7 @@ public class EventApiController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiEventResponse> createEvent(@RequestBody EventDTO eventDAO) {
+    public ResponseEntity<ApiResponse<EventDTO>> createEvent(@RequestBody EventDTO eventDAO) {
         final var createdEvent = eventServiceImpl.createEvent(EventTransformer.from(eventDAO));
 
         return ResponseEntity.ok(
@@ -45,7 +46,7 @@ public class EventApiController {
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity<ApiEventResponse> editEvent(@PathVariable Integer id,
+    public ResponseEntity<ApiResponse<EventDTO>> editEvent(@PathVariable Integer id,
                                                       @RequestBody EventDTO eventDAO) {
         final var updatedEvent = eventServiceImpl.editEvent(id, EventTransformer.from(eventDAO));
 
