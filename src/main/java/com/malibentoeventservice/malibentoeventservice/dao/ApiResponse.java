@@ -43,10 +43,12 @@ public class ApiResponse<T> {
         return this;
     }
 
+    @SuppressWarnings(value = "unused")
     public T getData() {
         return data;
     }
 
+    @SuppressWarnings(value = "unused")
     public List<ErrorDTO> getErrors() {
         return errors;
     }

@@ -14,6 +14,7 @@ public class ErrorDTO {
         return new ErrorDTO();
     }
 
+    @SuppressWarnings(value = "unused")
     public static ErrorDTO from(final String detail, final String title) {
         return ErrorDTO
                 .empty()
@@ -37,10 +38,12 @@ public class ErrorDTO {
         return this;
     }
 
+    @SuppressWarnings(value = "unused")
     public String getDetail() {
         return detail;
     }
 
+    @SuppressWarnings(value = "unused")
     public String getTitle() {
         return title;
     }
