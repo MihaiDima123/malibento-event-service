@@ -1,6 +1,8 @@
 package com.malibentoeventservice.malibentoeventservice.entities;
 
 
+import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
+import com.malibentoeventservice.malibentoeventservice.transformers.EventTransformer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -132,5 +134,9 @@ public class Event {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public EventDTO asDTO() {
+        return EventTransformer.from(this);
     }
 }

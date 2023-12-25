@@ -1,5 +1,7 @@
 package com.malibentoeventservice.malibentoeventservice.entities;
 
+import com.malibentoeventservice.malibentoeventservice.dao.location.LocationDTO;
+import com.malibentoeventservice.malibentoeventservice.transformers.LocationTransformer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,5 +37,9 @@ public class Location {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public LocationDTO asDTO() {
+        return LocationTransformer.from(this);
     }
 }

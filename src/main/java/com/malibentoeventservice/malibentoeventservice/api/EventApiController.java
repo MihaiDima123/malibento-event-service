@@ -1,7 +1,7 @@
 package com.malibentoeventservice.malibentoeventservice.api;
 
 import com.malibentoeventservice.malibentoeventservice.dao.event.ApiEventResponse;
-import com.malibentoeventservice.malibentoeventservice.dao.event.EventDAO;
+import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +20,12 @@ public class EventApiController {
         return ResponseEntity.ok(
                 ApiEventResponse
                         .empty()
-                        .ofData(EventDAO.empty())
+                        .ofData(EventDTO.empty())
         );
     }
 
     @PostMapping
-    public ResponseEntity<ApiEventResponse> createEvent(@RequestBody EventDAO eventDAO) {
+    public ResponseEntity<ApiEventResponse> createEvent(@RequestBody EventDTO eventDAO) {
         return ResponseEntity.ok(
                 ApiEventResponse.empty()
                         .ofData(eventDAO)
@@ -33,7 +33,7 @@ public class EventApiController {
     }
 
     @PatchMapping
-    public ResponseEntity<ApiEventResponse> editEvent(@RequestBody EventDAO eventDAO) {
+    public ResponseEntity<ApiEventResponse> editEvent(@RequestBody EventDTO eventDAO) {
         return ResponseEntity.ok(
                 ApiEventResponse.empty()
                         .ofData(eventDAO)
