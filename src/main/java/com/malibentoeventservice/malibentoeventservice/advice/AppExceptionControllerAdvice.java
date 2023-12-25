@@ -13,7 +13,7 @@ public class AppExceptionControllerAdvice {
     private static final Logger logger = LoggerFactory.getLogger(AppExceptionControllerAdvice.class);
     private static final String ERROR_MESSAGE = "Unexpected error";
 
-    @ExceptionHandler(Throwable.class)
+    @ExceptionHandler(value = {Throwable.class})
     public ApiErrorResponse onAnyException(final Throwable t) {
         logger.error("[onAnyException] - {}", t.getMessage(), t);
         return ApiErrorResponse.withError(ERROR_MESSAGE);
