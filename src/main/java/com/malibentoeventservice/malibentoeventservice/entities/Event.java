@@ -28,6 +28,8 @@ public class Event {
     private Visibility visibility;
     @ManyToOne
     private Location location;
+    @ManyToOne
+    private Client client;
 
     private boolean active = true;
     private boolean deleted = false;
@@ -36,8 +38,9 @@ public class Event {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Event setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getTitle() {
@@ -134,6 +137,15 @@ public class Event {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Event setClient(Client client) {
+        this.client = client;
+        return this;
     }
 
     public EventDTO asDTO() {

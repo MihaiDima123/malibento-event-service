@@ -8,7 +8,7 @@ public interface EventService {
     @Transactional
     Event createEvent(final Event event);
     @Transactional
-    Event editEvent(final Event event);
+    Event editEvent(final Integer id, final Event event);
     @Transactional
     void removeEvent(final Integer eventId);
 }
