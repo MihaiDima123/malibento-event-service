@@ -9,7 +9,6 @@ public class EventTransformer {
         event.setTitle(eventDTO.getTitle());
         event.setSubtitle(eventDTO.getSubtitle());
         event.setDescription(eventDTO.getDescription());
-        event.setLocation(LocationTransformer.from(eventDTO.getLocation()));
         event.setEventStartDate(eventDTO.getStartDate());
         event.setEventEndDate(eventDTO.getEndDate());
         event.setCreated(eventDTO.getCreated());
