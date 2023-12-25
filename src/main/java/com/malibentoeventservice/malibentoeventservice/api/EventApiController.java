@@ -1,11 +1,14 @@
 package com.malibentoeventservice.malibentoeventservice.api;
 
 import com.malibentoeventservice.malibentoeventservice.dao.ApiResponse;
-import com.malibentoeventservice.malibentoeventservice.dao.event.ApiEventResponse;
 import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
+import com.malibentoeventservice.malibentoeventservice.exceptions.api.MalibentoNotFoundException;
 import com.malibentoeventservice.malibentoeventservice.service.EventService;
 import com.malibentoeventservice.malibentoeventservice.transformers.EventTransformer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/events")
 public class EventApiController {
+    private static final Logger logger = LoggerFactory.getLogger(EventApiController.class);
     private final EventService eventServiceImpl;
 
     @Autowired
@@ -28,39 +32,71 @@ public class EventApiController {
 
     @GetMapping("{id}")
     public ResponseEntity<ApiResponse<EventDTO>> getEventById(@PathVariable Integer id) {
-        return ResponseEntity.ok(
-                ApiEventResponse
-                        .empty()
-                        .ofData(EventTransformer.from(eventServiceImpl.getEventById(id)))
-        );
+        try {
+            return ResponseEntity.ok(
+                    ApiResponse.<EventDTO>empty()
+                            .ofData(EventTransformer.from(eventServiceImpl.getEventById(id)))
+            );
+        } catch (final MalibentoNotFoundException e) {
+            logger.error("[getEventById]", e);
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.<EventDTO>empty().ofError(e));
+        } catch (final Throwable t) {
+            logger.error("[getEventById]", t);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.<EventDTO>empty().ofError());
+        }
     }
 
     @PostMapping
     public ResponseEntity<ApiResponse<EventDTO>> createEvent(@RequestBody EventDTO eventDAO) {
-        final var createdEvent = eventServiceImpl.createEvent(EventTransformer.from(eventDAO));
+        try {
+            final var createdEvent = eventServiceImpl.createEvent(EventTransformer.from(eventDAO));
 
-        return ResponseEntity.ok(
-                ApiEventResponse.empty()
-                        .ofData(EventTransformer.from(createdEvent))
-        );
+            return ResponseEntity.ok(
+                    ApiResponse.<EventDTO>empty()
+                            .ofData(EventTransformer.from(createdEvent))
+            );
+        } catch (final Throwable t) {
+            logger.error("[createEvent]", t);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.<EventDTO>empty().ofError());
+        }
     }
 
     @PatchMapping("{id}")
     public ResponseEntity<ApiResponse<EventDTO>> editEvent(@PathVariable Integer id,
                                                       @RequestBody EventDTO eventDAO) {
-        final var updatedEvent = eventServiceImpl.editEvent(id, EventTransformer.from(eventDAO));
+        try {
+            final var updatedEvent = eventServiceImpl.editEvent(id, EventTransformer.from(eventDAO));
 
-        return ResponseEntity.ok(
-                ApiEventResponse.empty()
-                        .ofData(EventTransformer.from(updatedEvent))
-        );
+            return ResponseEntity.ok(
+                    ApiResponse.<EventDTO>empty()
+                            .ofData(EventTransformer.from(updatedEvent))
+            );
+        } catch (final Throwable t) {
+            logger.error("[editEvent]", t);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.<EventDTO>empty().ofError());
+        }
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ApiEventResponse> deleteEvent(@PathVariable Integer id) {
-        eventServiceImpl.removeEvent(id);
-        return ResponseEntity.ok(
-                ApiEventResponse.empty()
-        );
+    public ResponseEntity<ApiResponse<EventDTO>> deleteEvent(@PathVariable Integer id) {
+        try {
+            eventServiceImpl.removeEvent(id);
+            return ResponseEntity.ok(
+                    ApiResponse.empty()
+            );
+        } catch (final Throwable t) {
+            logger.error("[editEvent]", t);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.<EventDTO>empty().ofError());
+        }
     }
 }

@@ -36,4 +36,12 @@ public class ErrorDTO {
         this.title = title;
         return this;
     }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

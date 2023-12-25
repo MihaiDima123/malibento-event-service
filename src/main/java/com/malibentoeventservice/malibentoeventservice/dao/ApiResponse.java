@@ -9,15 +9,21 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
+    private static final String DEFAULT_API_ERROR = "Server error";
+
     private T data;
     private List<ErrorDTO> errors;
 
     public static <T> ApiResponse<T> empty() {
-        return new ApiResponse<T>();
+        return new ApiResponse<>();
     }
 
     public ApiResponse<T> ofError(final Throwable t) {
         return addErrorForListAndReturnSelf(t.getMessage());
+    }
+
+    public ApiResponse<T> ofError() {
+        return addErrorForListAndReturnSelf(DEFAULT_API_ERROR);
     }
 
     public ApiResponse<T> ofData(final T data) {
@@ -35,5 +41,13 @@ public class ApiResponse<T> {
     private ApiResponse<T> addErrorForListAndReturnSelf(final String errorMessage) {
         addErrorForList(errorMessage);
         return this;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public List<ErrorDTO> getErrors() {
+        return errors;
     }
 }
