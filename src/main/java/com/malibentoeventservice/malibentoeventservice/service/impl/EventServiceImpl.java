@@ -2,6 +2,7 @@ package com.malibentoeventservice.malibentoeventservice.service.impl;
 
 import com.malibentoeventservice.malibentoeventservice.entities.Event;
 import com.malibentoeventservice.malibentoeventservice.enums.Entities;
+import com.malibentoeventservice.malibentoeventservice.exceptions.NoSuchClientException;
 import com.malibentoeventservice.malibentoeventservice.exceptions.api.MalibentoNotFoundException;
 import com.malibentoeventservice.malibentoeventservice.repository.EventRepository;
 import com.malibentoeventservice.malibentoeventservice.service.ClientService;
@@ -22,28 +23,28 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEventById(final Integer eventId) {
+    public Event getEventById(final Integer eventId) throws MalibentoNotFoundException, NoSuchClientException {
         return eventRepository
                 .findByIdAndClient(eventId, clientServiceImpl.getCurrentClient())
                 .orElseThrow(() -> new MalibentoNotFoundException(Entities.EVENT.getValue()));
     }
 
     @Override
-    public Event createEvent(final Event event) {
+    public Event createEvent(final Event event) throws NoSuchClientException {
         return eventRepository.save(
                 event.setClient(clientServiceImpl.getCurrentClient())
         );
     }
 
     @Override
-    public Event editEvent(final Integer id, final Event event) {
+    public Event editEvent(final Integer id, final Event event) throws NoSuchClientException {
         return eventRepository.save(
                 event.setId(id).setClient(clientServiceImpl.getCurrentClient())
         );
     }
 
     @Override
-    public void removeEvent(final Integer eventId) {
+    public void removeEvent(final Integer eventId) throws NoSuchClientException {
         eventRepository.removeByIdAndClient(eventId, clientServiceImpl.getCurrentClient());
     }
 }

@@ -18,7 +18,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client getClientByRef(final String clientRef) {
+    public Client getClientByRef(final String clientRef) throws NoSuchClientException {
         final var optionalClientByRef = clientRepository.findByClientRef(clientRef);
 
         if (optionalClientByRef.isEmpty()) {
@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client getCurrentClient() {
+    public Client getCurrentClient() throws NoSuchClientException {
         return getClientByRef(ThreadContext.retrieveCurrentClient());
     }
 }
