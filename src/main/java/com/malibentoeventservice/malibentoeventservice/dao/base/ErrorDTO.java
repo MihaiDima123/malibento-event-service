@@ -1,7 +1,11 @@
 package com.malibentoeventservice.malibentoeventservice.dao.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorDTO {
     private static final String DEFAULT_DETAIL = "";
@@ -36,15 +40,5 @@ public class ErrorDTO {
     public ErrorDTO ofTitle(final String title) {
         this.title = title;
         return this;
-    }
-
-    @SuppressWarnings(value = "unused")
-    public String getDetail() {
-        return detail;
-    }
-
-    @SuppressWarnings(value = "unused")
-    public String getTitle() {
-        return title;
     }
 }

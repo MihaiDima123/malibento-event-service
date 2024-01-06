@@ -1,5 +1,8 @@
 package com.malibentoeventservice.malibentoeventservice.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Entities {
     EVENT("event"),
     CLIENT("client");
@@ -8,9 +11,5 @@ public enum Entities {
 
     Entities(final String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
     }
 }

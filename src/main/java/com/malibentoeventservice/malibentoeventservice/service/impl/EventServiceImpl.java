@@ -32,14 +32,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event createEvent(final Event event) throws NoSuchClientException {
         return eventRepository.save(
-                event.setClient(clientServiceImpl.getCurrentClient())
+                event.withClient(clientServiceImpl.getCurrentClient())
         );
     }
 
     @Override
     public Event editEvent(final Integer id, final Event event) throws NoSuchClientException {
         return eventRepository.save(
-                event.setId(id).setClient(clientServiceImpl.getCurrentClient())
+                event.withId(id).withClient(clientServiceImpl.getCurrentClient())
         );
     }
 
