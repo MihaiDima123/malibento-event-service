@@ -69,6 +69,7 @@ public class EventDTO {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public Event asEntity() {
         return EventTransformer.from(this);
     }

@@ -21,6 +21,7 @@ public class LocationDTO {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public Location asEntity() {
         return LocationTransformer.from(this);
     }
