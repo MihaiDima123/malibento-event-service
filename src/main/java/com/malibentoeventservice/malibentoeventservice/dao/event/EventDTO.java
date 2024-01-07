@@ -17,6 +17,7 @@ public class EventDTO {
     private String title;
     private String subtitle;
     private String description;
+    private String authorRef;
     @JsonProperty("start_date")
     private LocalDateTime startDate;
     @JsonProperty("end_date")

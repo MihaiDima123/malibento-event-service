@@ -13,6 +13,7 @@ public class EventTransformer {
         event.setEventEndDate(eventDTO.getEndDate());
         event.setCreated(eventDTO.getCreated());
         event.setUpdated(eventDTO.getUpdated());
+        event.setAuthorRef(eventDTO.getAuthorRef());
 
         return event;
     }
