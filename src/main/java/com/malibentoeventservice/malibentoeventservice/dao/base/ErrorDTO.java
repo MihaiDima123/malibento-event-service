@@ -29,7 +29,7 @@ public class ErrorDTO {
     public static ErrorDTO from(final String detail) {
         return ErrorDTO
                 .empty()
-                .ofDetail(detail);
+                .ofTitle(detail);
     }
 
     public ErrorDTO ofDetail(final String detail) {

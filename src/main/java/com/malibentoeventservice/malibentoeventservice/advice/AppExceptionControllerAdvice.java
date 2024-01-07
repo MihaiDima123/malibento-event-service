@@ -18,6 +18,6 @@ public class AppExceptionControllerAdvice {
         logger.error("[onAnyException] - {}", t.getMessage(), t);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiErrorResponse.withError(t));
+                .body(ApiErrorResponse.empty().ofError());
     }
 }
