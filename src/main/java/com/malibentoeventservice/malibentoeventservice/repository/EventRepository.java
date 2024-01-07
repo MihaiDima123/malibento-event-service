@@ -1,6 +1,7 @@
 package com.malibentoeventservice.malibentoeventservice.repository;
 
 import com.malibentoeventservice.malibentoeventservice.entities.Event;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -18,6 +19,7 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
             "where e.id = :id and e.client.id = :clientId and e.active = true and e.deleted = false")
     Optional<Event> findByIdAndClient(final Integer id, final Integer clientId);
 
+    @Modifying
     @Query("update Event " +
             "set deleted = true " +
             "where id = :id and client.id = :clientId")
