@@ -7,13 +7,14 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
-public class Visibility {
+@Getter
+@Setter
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String code;
+    private String clientRef;
+    private String locale;
+    private String language;
 }
