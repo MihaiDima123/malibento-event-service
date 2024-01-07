@@ -89,7 +89,7 @@ public class EventApiController {
 
     @PatchMapping("{id}")
     public ResponseEntity<ApiResponse<EventDTO>> editEvent(@PathVariable Integer id,
-                                                      @RequestBody EventDTO eventDAO) {
+                                                           @RequestBody EventDTO eventDAO) {
         try {
             final var updatedEvent = eventServiceImpl.editEvent(id, EventTransformer.from(eventDAO));
 
