@@ -19,14 +19,19 @@ public class EventTransformer {
     }
 
     public static EventDTO from(final Event event) {
-        return EventDTO.empty()
+        final var eventDTO =  EventDTO.empty()
                 .ofTitle(event.getTitle())
                 .ofSubtitle(event.getSubtitle())
                 .ofDescription(event.getDescription())
-                .ofLocation(LocationTransformer.from(event.getLocation()))
                 .ofStartDate(event.getEventStartDate())
                 .ofEndDate(event.getEventEndDate())
                 .ofCreated(event.getCreated())
                 .ofUpdated(event.getUpdated());
+
+        if (event.getLocation() != null) {
+            eventDTO.ofLocation(LocationTransformer.from(event.getLocation()));
+        }
+
+        return eventDTO;
     }
 }
