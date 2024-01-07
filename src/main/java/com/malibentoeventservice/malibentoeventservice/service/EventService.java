@@ -5,7 +5,10 @@ import com.malibentoeventservice.malibentoeventservice.exceptions.NoSuchClientEx
 import com.malibentoeventservice.malibentoeventservice.exceptions.api.MalibentoNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface EventService {
+    List<Event> getAll() throws NoSuchClientException;
     Event getEventById(final Integer eventId) throws MalibentoNotFoundException, NoSuchClientException;
     @Transactional
     Event createEvent(final Event event) throws NoSuchClientException;

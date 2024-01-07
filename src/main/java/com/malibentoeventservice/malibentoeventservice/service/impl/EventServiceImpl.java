@@ -10,6 +10,8 @@ import com.malibentoeventservice.malibentoeventservice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
@@ -23,9 +25,16 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<Event> getAll() throws NoSuchClientException {
+        return eventRepository.findAllByClientId(
+                clientServiceImpl.getCurrentClient().getId()
+        );
+    }
+
+    @Override
     public Event getEventById(final Integer eventId) throws MalibentoNotFoundException, NoSuchClientException {
         return eventRepository
-                .findByIdAndClient(eventId, clientServiceImpl.getCurrentClient())
+                .findByIdAndClient(eventId, clientServiceImpl.getCurrentClient().getId())
                 .orElseThrow(() -> new MalibentoNotFoundException(Entities.EVENT.getValue()));
     }
 
@@ -45,6 +54,6 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void removeEvent(final Integer eventId) throws NoSuchClientException {
-        eventRepository.removeByIdAndClient(eventId, clientServiceImpl.getCurrentClient());
+        eventRepository.removeByIdAndClient(eventId, clientServiceImpl.getCurrentClient().getId());
     }
 }

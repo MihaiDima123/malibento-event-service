@@ -2,6 +2,7 @@ package com.malibentoeventservice.malibentoeventservice.api;
 
 import com.malibentoeventservice.malibentoeventservice.dao.ApiResponse;
 import com.malibentoeventservice.malibentoeventservice.dao.event.EventDTO;
+import com.malibentoeventservice.malibentoeventservice.dao.event.EventListDTO;
 import com.malibentoeventservice.malibentoeventservice.exceptions.api.MalibentoNotFoundException;
 import com.malibentoeventservice.malibentoeventservice.service.EventService;
 import com.malibentoeventservice.malibentoeventservice.transformers.EventTransformer;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/events")
 public class EventApiController {
@@ -28,6 +31,23 @@ public class EventApiController {
     @Autowired
     public EventApiController(final EventService eventServiceImpl) {
         this.eventServiceImpl = eventServiceImpl;
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<EventListDTO>> getAllEvents() {
+        try {
+            final List<EventDTO> allEvents = eventServiceImpl.getAll().stream().map(EventTransformer::from).toList();
+
+            return ResponseEntity.ok(
+                    ApiResponse.<EventListDTO>empty()
+                            .ofData(EventListDTO.ofEvents(allEvents))
+            );
+        } catch (Exception e) {
+            logger.error("[getAllEvents]", e);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.<EventListDTO>empty().ofError());
+        }
     }
 
     @GetMapping("{id}")
