@@ -1,7 +1,6 @@
 package com.malibentoeventservice.malibentoeventservice.advice;
 
 import com.malibentoeventservice.malibentoeventservice.dao.ApiResponse;
-import com.malibentoeventservice.malibentoeventservice.dao.base.ApiErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,6 +17,6 @@ public class AppExceptionControllerAdvice {
         logger.error("[onAnyException] - {}", t.getMessage(), t);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiErrorResponse.empty().ofError());
+                .body(ApiResponse.empty().ofError());
     }
 }
