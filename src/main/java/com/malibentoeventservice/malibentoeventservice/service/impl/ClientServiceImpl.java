@@ -1,6 +1,6 @@
 package com.malibentoeventservice.malibentoeventservice.service.impl;
 
-import com.malibentoeventservice.malibentoeventservice.session.ThreadContext;
+import com.malibentoeventservice.malibentoeventservice.configuration.ThreadContext;
 import com.malibentoeventservice.malibentoeventservice.entities.Client;
 import com.malibentoeventservice.malibentoeventservice.exceptions.NoSuchClientException;
 import com.malibentoeventservice.malibentoeventservice.repository.ClientRepository;

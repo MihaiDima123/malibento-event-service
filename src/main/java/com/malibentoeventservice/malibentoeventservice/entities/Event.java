@@ -10,22 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
 
 import java.time.LocalDateTime;
 
-@FilterDef(
-    name = "clientRefFilter",
-    parameters = @ParamDef(name = "clientRef", type = String.class),
-    defaultCondition = "client_ref = :clientRef"
-)
-
+@Entity
 @Getter
 @Setter
-@Entity
-@Filter(name = "clientRefFilter", condition = "client_ref = :clientRef")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +32,8 @@ public class Event {
     private Visibility visibility;
     @ManyToOne
     private Location location;
-    private String clientRef;
+    @ManyToOne
+    private Client client;
 
     private boolean active = true;
     private boolean deleted = false;
@@ -50,6 +41,11 @@ public class Event {
     @SuppressWarnings("unused")
     public EventDTO asDTO() {
         return EventTransformer.from(this);
+    }
+
+    public Event withClient(final Client client) {
+        this.client = client;
+        return this;
     }
 
     public Event withId(final Integer id) {
