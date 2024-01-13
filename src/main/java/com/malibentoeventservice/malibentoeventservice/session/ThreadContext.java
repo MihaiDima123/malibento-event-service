@@ -1,4 +1,4 @@
-package com.malibentoeventservice.malibentoeventservice.configuration;
+package com.malibentoeventservice.malibentoeventservice.session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

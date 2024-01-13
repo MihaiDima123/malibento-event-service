@@ -11,17 +11,17 @@ import java.util.Optional;
 public interface EventRepository extends CrudRepository<Event, Integer> {
     @Query("select e " +
             "from Event e " +
-            "where e.client.id = :clientId and e.active = true and e.deleted = false")
-    List<Event> findAllByClientId(final Integer clientId);
+            "where e.active = true and e.deleted = false")
+    List<Event> findAllActive();
 
     @Query("select e " +
             "from Event e " +
-            "where e.id = :id and e.client.id = :clientId and e.active = true and e.deleted = false")
-    Optional<Event> findByIdAndClient(final Integer id, final Integer clientId);
+            "where e.id = :id and e.active = true and e.deleted = false")
+    Optional<Event> findByIdAndClient(final Integer id);
 
     @Modifying
     @Query("update Event " +
             "set deleted = true " +
-            "where id = :id and client.id = :clientId")
-    void removeByIdAndClient(final Integer id, final Integer clientId);
+            "where id = :id")
+    void removeByIdAndClient(final Integer id);
 }
