@@ -1,6 +1,6 @@
 package com.malibentoeventservice.malibentoeventservice.configuration.filters;
 
-import com.malibentoeventservice.malibentoeventservice.configuration.ThreadContext;
+import com.malibentoeventservice.malibentoeventservice.session.ThreadContext;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
