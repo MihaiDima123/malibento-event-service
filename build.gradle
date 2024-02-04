@@ -28,7 +28,7 @@ dependencies {
 	implementation 'org.postgresql:postgresql:42.7.0'
 	implementation 'com.zaxxer:HikariCP:5.1.0'
 
-	implementation 'org.malibento.clientinterface:event-service-client-interface:1.0.4'
+	implementation 'org.malibento.clientinterface:event-service-client-interface:1.0.5'
 	// Compile
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
