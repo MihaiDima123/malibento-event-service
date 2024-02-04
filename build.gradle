@@ -12,6 +12,13 @@ java {
 }
 
 repositories {
+	maven {
+		url("https://maven.pkg.github.com/DMI-Technologies/event-service-client-interface")
+		credentials {
+			username = project.findProperty("gpr.username")
+			password = project.findProperty("gpr.password")
+		}
+	}
 	mavenCentral()
 }
 
@@ -21,6 +28,7 @@ dependencies {
 	implementation 'org.postgresql:postgresql:42.7.0'
 	implementation 'com.zaxxer:HikariCP:5.1.0'
 
+	implementation 'org.malibento.clientinterface:event-service-client-interface:1.0.4'
 	// Compile
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
