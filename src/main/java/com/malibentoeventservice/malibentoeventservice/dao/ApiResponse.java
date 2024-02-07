@@ -10,7 +10,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
     private static final String DEFAULT_API_ERROR = "Server error";
-
+    private boolean success = true;
     private T data;
     private List<ErrorDTO> errors;
 
@@ -19,10 +19,12 @@ public class ApiResponse<T> {
     }
 
     public ApiResponse<T> ofError(final Throwable t) {
+        setSuccess(false);
         return addErrorForListAndReturnSelf(t.getMessage());
     }
 
     public ApiResponse<T> ofError() {
+        setSuccess(false);
         return addErrorForListAndReturnSelf(DEFAULT_API_ERROR);
     }
 
@@ -51,5 +53,15 @@ public class ApiResponse<T> {
     @SuppressWarnings(value = "unused")
     public List<ErrorDTO> getErrors() {
         return errors;
+    }
+
+    @SuppressWarnings("unused")
+    public boolean isSuccess() {
+        return success;
+    }
+
+    @SuppressWarnings("unused")
+    public void setSuccess(final boolean success) {
+        this.success = success;
     }
 }
