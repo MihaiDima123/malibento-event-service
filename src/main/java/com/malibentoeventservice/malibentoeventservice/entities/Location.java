@@ -12,15 +12,11 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@SuppressWarnings("unused")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String position; // TODO: Change this thing XD. Maybe a locator service i don't know how that works (yet)
-
-    @SuppressWarnings("unused")
-    public LocationDTO asDTO() {
-        return LocationTransformer.from(this);
-    }
+    private String position;
 }
