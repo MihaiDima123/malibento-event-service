@@ -9,7 +9,7 @@ import java.util.List;
 public class EventListDTO {
     private List<EventDTO> events = new ArrayList<>();
 
-    public static EventListDTO ofEvents(final List<EventDTO> eventDTOS) {
+    public static EventListDTO ofEvents(List<EventDTO> eventDTOS) {
         final var eventList = new EventListDTO();
         eventList.events = eventDTOS;
 

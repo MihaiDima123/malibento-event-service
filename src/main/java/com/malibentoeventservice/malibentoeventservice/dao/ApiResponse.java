@@ -18,7 +18,7 @@ public class ApiResponse<T> {
         return new ApiResponse<>();
     }
 
-    public ApiResponse<T> ofError(final Throwable t) {
+    public ApiResponse<T> ofError(Throwable t) {
         setSuccess(false);
         return addErrorForListAndReturnSelf(t.getMessage());
     }
@@ -28,19 +28,19 @@ public class ApiResponse<T> {
         return addErrorForListAndReturnSelf(DEFAULT_API_ERROR);
     }
 
-    public ApiResponse<T> ofData(final T data) {
+    public ApiResponse<T> ofData(T data) {
         this.data = data;
         return this;
     }
 
-    private void addErrorForList(final String errorMessage) {
+    private void addErrorForList(String errorMessage) {
         if (Objects.isNull(errors)) {
             this.errors = new ArrayList<>();
         }
         this.errors.add(ErrorDTO.from(errorMessage));
     }
 
-    private ApiResponse<T> addErrorForListAndReturnSelf(final String errorMessage) {
+    private ApiResponse<T> addErrorForListAndReturnSelf(String errorMessage) {
         addErrorForList(errorMessage);
         return this;
     }
@@ -61,7 +61,7 @@ public class ApiResponse<T> {
     }
 
     @SuppressWarnings("unused")
-    public void setSuccess(final boolean success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 }

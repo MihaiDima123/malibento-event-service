@@ -16,7 +16,7 @@ public class LocationDTO {
         return new LocationDTO();
     }
 
-    public LocationDTO ofName( final String name) {
+    public LocationDTO ofName(String name) {
         this.name = name;
         return this;
     }

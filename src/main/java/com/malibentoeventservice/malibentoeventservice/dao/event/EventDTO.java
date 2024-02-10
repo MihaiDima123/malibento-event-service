@@ -30,42 +30,42 @@ public class EventDTO {
         return new EventDTO();
     }
 
-    public EventDTO ofTitle(final String title) {
+    public EventDTO ofTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public EventDTO ofSubtitle(final String subtitle) {
+    public EventDTO ofSubtitle(String subtitle) {
         this.subtitle = subtitle;
         return this;
     }
 
-    public EventDTO ofDescription(final String description) {
+    public EventDTO ofDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public EventDTO ofStartDate(final LocalDateTime startDate) {
+    public EventDTO ofStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public EventDTO ofEndDate(final LocalDateTime endDate) {
+    public EventDTO ofEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    public EventDTO ofCreated(final LocalDateTime created) {
+    public EventDTO ofCreated(LocalDateTime created) {
         this.created = created;
         return this;
     }
 
-    public EventDTO ofUpdated(final LocalDateTime updated) {
+    public EventDTO ofUpdated(LocalDateTime updated) {
         this.updated = updated;
         return this;
     }
 
-    public EventDTO ofLocation(final LocationDTO location) {
+    public EventDTO ofLocation(LocationDTO location) {
         this.location = location;
         return this;
     }

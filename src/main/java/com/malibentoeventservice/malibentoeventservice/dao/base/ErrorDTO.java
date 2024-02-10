@@ -19,25 +19,25 @@ public class ErrorDTO {
     }
 
     @SuppressWarnings(value = "unused")
-    public static ErrorDTO from(final String detail, final String title) {
+    public static ErrorDTO from(String detail, String title) {
         return ErrorDTO
                 .empty()
                 .ofDetail(detail)
                 .ofTitle(title);
     }
 
-    public static ErrorDTO from(final String detail) {
+    public static ErrorDTO from(String detail) {
         return ErrorDTO
                 .empty()
                 .ofTitle(detail);
     }
 
-    public ErrorDTO ofDetail(final String detail) {
+    public ErrorDTO ofDetail(String detail) {
         this.detail = detail;
         return this;
     }
 
-    public ErrorDTO ofTitle(final String title) {
+    public ErrorDTO ofTitle(String title) {
         this.title = title;
         return this;
     }
