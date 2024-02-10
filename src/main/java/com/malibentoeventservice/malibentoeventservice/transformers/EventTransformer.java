@@ -29,7 +29,7 @@ public class EventTransformer {
                 .ofUpdated(event.getUpdated());
 
         if (event.getLocation() != null) {
-            eventDTO.ofLocation(LocationTransformer.from(event.getLocation()));
+            eventDTO.setLocation(LocationTransformer.from(event.getLocation()));
         }
 
         return eventDTO;
