@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@SuppressWarnings("unused")
 public class EventDTO {
     private String title;
     private String subtitle;
@@ -70,7 +71,6 @@ public class EventDTO {
         return this;
     }
 
-    @SuppressWarnings("unused")
     public Event asEntity() {
         return EventTransformer.from(this);
     }
